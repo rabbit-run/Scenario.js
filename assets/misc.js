@@ -13,6 +13,9 @@ $(document).ready(function(){
 
 	});
 
+	$(document).on('click', '#next', api.next);
+	$(document).on('click', '#prev', api.prev);
+
 	var hashChange = function(){
 		var hash = window.location.hash;
 		hash = hash.replace('#/', '');
