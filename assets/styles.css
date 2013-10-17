@@ -1,0 +1,226 @@
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800);
+
+
+/*
+ * Base
+ */
+html, body{
+	overflow: hidden;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+
+	text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+#header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 80px;
+	background: #fff;
+	padding: 0 20px;
+	outline: 1px solid rgba(0,0,0,0.2);
+	z-index: 9;
+	}
+#content{
+	position: absolute;
+	top: 80px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 8;
+
+	background-color: #7187a8;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#7187a8), to(#5b6f8c));
+	background-image: -webkit-linear-gradient(top, #7187a8, #5b6f8c);
+	background-image:    -moz-linear-gradient(top, #7187a8, #5b6f8c);
+	background-image:      -o-linear-gradient(top, #7187a8, #5b6f8c);
+	background-image:         linear-gradient(to bottom, #7187a8, #5b6f8c);
+	}
+
+
+#header .brand{
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: 800;
+	font-size: 24px;
+	color: #324055;
+	opacity: 0.8;
+	float: left;
+
+	-webkit-transition: opacity .3s;
+	-moz-transition: opacity .3s;
+	-ms-transition: opacity .3s;
+	-o-transition: opacity .3s;
+	transition: opacity .3s;
+}
+#header .brand:hover{
+	opacity: 1;
+}
+
+#header ul{
+	float: right;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#header a{
+	margin-top: 22px;
+}
+#header ul li{
+	display: inline-block;
+}
+#header ul a{
+	display: inline-block;
+	margin-right: 50px;
+	margin-top: 31px;
+	color: #7187a8;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	opacity: .8;
+	filter: alpha(opacity=80);
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+	border-bottom: 2px solid transparent;
+	-webkit-transform: translate3d(0,0,0);
+	}
+	#header ul a:hover,
+	#header ul a.active{
+		border-color: #7187a8;
+	}
+
+#impress,
+#impress a{
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+	-webkit-transition: opacity .3s;
+	-moz-transition: opacity .3s;
+	-ms-transition: opacity .3s;
+	-o-transition: opacity .3s;
+	transition: opacity .3s;
+}
+#impress a{
+	border-bottom: 2px solid rgba(255,255,255,0.8);
+	text-decoration: none;
+}
+#impress a:hover{
+	opacity: 0.6;
+}
+
+#impress .step{
+	opacity: 0;
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	-ms-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+}
+#impress .step.active {
+	opacity: 1;
+	z-index: 999;
+}
+
+/* Buttons */
+.btn{
+	border: 2px solid #fff;
+	border-radius: 4px;
+	display: inline-block;
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	font-size: 24px;
+}
+#impress .slide a.btn:hover{
+	background: #fff;
+	color: #7187a8;
+	text-shadow: none;
+	opacity: 1;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+
+/* Type */
+.slide{
+	display: block;
+	width: 900px;
+	height: 700px;
+	padding: 40px 60px;
+	margin-top: 50px;
+}
+.slide p {
+	display: block;
+	font-size: 50px;
+	line-height: 72px;
+}
+.slide .small{
+	font-size: 24px;
+	line-height: 36px;
+}
+.slide .small .small{
+	font-size: 18px;
+	line-height: 24px;
+}
+
+/* Code */
+.slide pre{
+	display: block;
+	text-align: left;
+	background: rgba(0,0,0,0.5);
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	padding: 20px;
+}
+.slide pre code{
+	margin: 0;
+	padding: 9;
+}
+pre .s{ color: #65E7A9; }
+pre .c{ opacity: 0.5; }
+
+
+/* Circles */
+.slide .circle,
+.slide .circle img{
+    border-radius: 200px;
+}
+.slide .circle{
+	padding: 5px;
+	display: inline-block;
+	vertical-align: middle;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    background: rgba(255,255,255,0.25);
+}
+.slide .circle img{
+	display: block;
+}
+.slide .circle-text{
+	display: inline-block;
+	vertical-align: middle;
+	width: 500px;
+}
+.circle-text.left{margin-left: 20px;}
+.circle-text.right{margin-right: 20px;}
+
+
+.center{text-align: center;}
+.left{text-align: left;}
+.right{text-align: right;}
+.pull-left{float:left;}
+.pull-right{float:right;}
+.uppercase{text-transform: uppercase;}

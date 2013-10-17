@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Scenario.js</title>
+		<link href="assets/styles.css" rel="stylesheet" type="text/css">
+	</head>
+	<body class="impress-not-supported">
+		<div id="header">
+			<a href="/" class="brand">Scenario.js</a>
+			<ul>
+				<li><a href="#" data-target="intro">Introduction</a></li>
+				<li><a href="#" data-target="usage">Usage</a></li>
+				<li><a href="#" data-target="data">Viewing Data</a></li>
+				<li><a href="https://github.com/MakerStudios/Scenario.js" target="_blank" data-target="github">GitHub</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			
+			<div id="impress">
+
+				<!-- Introduction -->
+				<div id="intro-1" class="step slide center">
+			        <p class="uppercase">Crazy simple<br /><b>A/B</b> testing with <b>Mixpanel</b></p>
+			        <div>
+			        	<a href="https://github.com/MakerStudios/Scenario.js/archive/master.zip" class="btn">Download</a>
+			        	<a href="https://github.com/MakerStudios/Scenario.js" class="btn" target="_blank">Github</a>
+			        </div>
+			        <p>By Maker Studios</p>
+			    </div>
+			    <div id="intro-2"  class="step slide center" data-x="300">
+			        <p>Scenario.js is a tiny Javascript library used to deliver, track, and complete A/B Tests on the client side.</p>
+			        <p>It is useful for determining the impact your software has on users' behavior.</p>
+			    </div>
+			    <div id="intro-3"  class="step slide" data-x="600">
+			        <p>Metrics are recorded automatically with Mixpanel, making your job that much easier.</p>
+			        <p>Continue to read about the <a href="#usage-1">usage</a> of Scenario.js</p>
+			    </div>
+
+			    <!-- Usage -->
+			    <div id="usage-1" class="step slide center" data-y="200" data-x="600">
+			        <p>Using <b>Scenario.js</b> is simple. Just include the Mixpanel <a href="https://mixpanel.com/help/reference/javascript" target="_blank">JS Library</a> and <a href="#">Scenario.js</a> and you are ready to go.</p>
+			    </div>
+			    <div id="usage-2" class="step slide" data-y="200" data-x="900">
+			        <p class="center">Writing your first test is easy: </p>
+			        <pre><code><i>var</i> controller = new <b>Scenario</b>(<span class="s">'My Test Name'</span>);
+
+controller.<b>test</b>(<span class="s">'Test A'</span>);
+controller.<b>test</b>(<span class="s">'Test B'</span>);
+
+controller.<b>go</b>();</code></pre>
+					<p class="small">This is an example test. Classes will be added to the <code>body</code> element depending on which test was chosen (i.e. "test-a" or "test-b"). When you call the <code>go</code> method, the tests begin.</p>
+			    </div>
+			    <div id="usage-3" class="step slide" data-y="200" data-x="1200">
+			     	<p class="center">Completing a Test: </p>
+			     	<pre><code>controller.<b>complete</b>(); <span class="c">// Finishes the test</span></code></pre>
+			     	<p class="small">Calling the <code>complete</code> method finishes the test and records any remaining metrics in Mixpanel.</p>
+			    </div>
+
+			    <div id="usage-4" class="step slide" data-y="200" data-x="1500">
+			     	<p class="center">Real World Example: </p>
+			     	<p class="small">Lets test the difference in conversion rate between these two homepage layouts.</p>
+			     	<pre><code><i>var</i> controller = new <b>Scenario</b>(<span class="s">'Homepage Layout'</span>);
+                     .<b>test</b>(<span class="s">'Homepage V1'</span>);
+                     .<b>test</b>(<span class="s">'Homepage V2'</span>);
+                     .<b>go</b>();
+
+register.on(<span class="s">'click'</span>, controller.<b>complete</b>);</code></pre>
+			     	<p class="small">It is that simple to write your tests. How can you implement functionality based on these tests, though?</p>
+			    </div>
+
+			    <div id="usage-5" class="step slide" data-y="200" data-x="1800">
+			     	<p class="center">Refined Logic 1/3</p>
+			     	<p class="small">In our prior example, we are testing two homepage layouts. Depending on which test was chosen, a class name will be added to the <code>body</code> element.</p>
+			     	<pre><code>&lt;body class=<span class="s">&quot;homepage-v1&quot;</span>&gt;
+<span class="c">&lt;!-- or --&gt;</span>
+&lt;body class=<span class="s">&quot;homepage-v2&quot;</span>&gt;</code></pre>
+					<p class="small">This allows you to add your own custom styles based off of your tests names with only CSS, making things simple to toggle, show/hide, and style.</p>
+			    </div>
+
+			    <div id="usage-6" class="step slide" data-y="200" data-x="1800">
+			     	<p class="center">Refined Logic 2/3</p>
+			     	<p class="small">What if we have more complex needs than just changing the style of elements?</p>
+			        <pre><code>controller.<b>test</b>(<span class="s">'Homepage V1'</span>, function(){
+    <span class="c">// Homepage V1 Callback</span>
+});
+controller.<b>test</b>(<span class="s">'Homepage V2'</span>, function(){
+    <span class="c">// Homepage V2 Callback</span>
+});</code></pre>
+			     	<p class="small">It is that simple to write your tests. How can you implement functionality based on these tests, though?</p>
+			    </div>
+
+			    <div id="usage-7" class="step slide" data-y="200" data-x="1800">
+			     	<p class="center">Refined Logic 3/3</p>
+			     	<p class="small">What if we want one test to appear more often than another? For this, we must add a <b>weight</b> to our tests. Each test by default has a weight of <b>1</b>.</p>
+			        <pre><code>controller.<b>test</b>(<span class="s">'Homepage V1'</span>, 2);
+controller.<b>test</b>(<span class="s">'Homepage V2'</span>, 3);</code></pre>
+			     	<p class="small">Homepage V1 will be shown 2/5 times (or 40%) while Homepage V2 will be shown 3/5 times (or 60%). This is great for testing out new features without releasing them to the entire userbase.</p>
+			    </div>
+
+			    <!-- Data -->
+			    <div id="data-1" class="step slide" data-y="400" data-x="1800">
+			    	<p class="center">Viewing results in Mixpanel</p>
+			    	<p class="small">Data will be viewed in Mixpanel through a Funnel. Funnels are ways to track a series of actions, and what we're interested in is conversion rates between test A and test B.</p>
+			    	<div class="small center">
+			    		<div class="circle"><img src="assets/img/engagement.png"></div>
+			    		<div class="circle-text left">
+			    			After logging into Mixpanel, navigate to your projects page and click "Funnels" on the left hand navigation.
+			    		</div>
+			    	</div>
+			    </div>
+			    <div id="data-2" class="step slide" data-y="400" data-x="2100">
+			    	<p class="center">Viewing results in Mixpanel</p>
+			    	<div class="small center">
+			    		<div class="circle"><img src="assets/img/create.png"></div>
+			    		<div class="circle-text left">Begin by creating a new Funnel to view your test results in. Give your Funnel a distinctive name.</div>
+			    	</div>
+			    	<div class="small center">
+			    		<div class="circle-text right small">Next, add two steps to your Funnel. You will have your test names metric to choose from in these steps. In step 1, choose "My Test Name Start", and for step 2, choose "My Test Name Finish".</div>
+			    		<div class="circle"><img src="assets/img/name.png"></div>
+			    	</div>
+			    </div>
+
+			    <div id="data-4" class="step slide" data-y="400" data-x="2400">
+			    	<p class="small">Once you are presented with your data, click the "Finish" metric (the second bar) to see the data for people who completed your test.</p>
+			    	<img src="assets/img/data.png" class="block">
+			    </div>
+			    <div id="data-5" class="step slide" data-y="400" data-x="2700">
+			    	<p class="small">Last step, you must select the value "test" in the <b>BY</b> field. This will tell Mixpanel to show the data related to test results.</p>
+			    	<div class="small"><p class="small">Viewing the percentages on the right gives you insight to the conversion rates between Test A and Test B</p></div>
+			    	<img src="assets/img/results.png" class="block">
+			    </div>
+
+			    <div id="github-1" class="step slide" data-y="400" data-x="2700" data-z="400">
+			    	<p>Fork us on GitHub!</p>
+			    	<p>Scenario.js is available Open Source. Contributions are welcome!</p>
+			        <div>
+			        	<a href="https://github.com/MakerStudios/Scenario.js" class="btn" target="_blank">Github</a>
+			        	<a href="#intro-1" class="btn">Restart Presentation</a>
+			        </div>
+			    </div>
+			</div>
+
+		</div>
+
+		<script src="http://bartaz.github.io/impress.js/js/impress.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="assets/misc.js"></script>
+	</body>
+</html>
