@@ -47,7 +47,7 @@
                 for(i in self.cache.weights){
                     var _weight = self.cache.weights[i];
                     while(_weight--){
-                        toChoose.push(parseInt(i));
+                        toChoose.push(parseInt(i, 10));
                     }
                 }
                 return toChoose[Math.floor(Math.random() * toChoose.length)];
