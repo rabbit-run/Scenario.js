@@ -3,6 +3,7 @@
     "use strict";
 
     var Namespace = "Scenario";
+    var COOKIE_PERSISTENT_DAYS = 90;
 
     var Tester = Tester || function (scenarioOpts) {
 
@@ -31,6 +32,24 @@
          */
         self.tests = {};
 
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') { c = c.substring(1); }
+                if (c.indexOf(name) !== -1) { return c.substring(name.length, c.length); }
+            }
+            return "";
+        }
+
         /**
          * Helper functions
          * @type {Object}
@@ -40,6 +59,26 @@
             track: scenarioOpts.track,
             toSlug: function (s) {
                 return s.toLowerCase().replace(/-+/g, "").replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+            },
+            chooseTest: function() {
+                var abtest_name = scenarioOpts.name,
+                    previous_assigned_test = this.previousAssignedTest(),
+                    chosen_test;
+                if (previous_assigned_test) {
+                    chosen_test = previous_assigned_test;
+                } else {
+                    chosen_test = this.chooseWeightedItem();
+                    this.persistentChosenTest(chosen_test);
+                }
+                return chosen_test;
+            },
+            persistentChosenTest: function(chosen_test) {
+                if (typeof chosen_test !== "undefined") {
+                    setCookie(scenarioOpts.name, chosen_test, COOKIE_PERSISTENT_DAYS);
+                }
+            },
+            previousAssignedTest: function() {
+                return getCookie(scenarioOpts.name);
             },
             chooseWeightedItem: function(){
                 var toChoose = [],
@@ -76,7 +115,7 @@
 
         self.go = function() {
 
-            var chosenTestIndex = utils.chooseWeightedItem();
+            var chosenTestIndex = utils.chooseTest();
             var test = self.tests[scenarioOpts.name][chosenTestIndex];
 
             d.body.className += " "+test.className;
