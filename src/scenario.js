@@ -68,11 +68,11 @@
                     chosen_test = previous_assigned_test;
                 } else {
                     chosen_test = this.chooseWeightedItem();
-                    this.persistentChosenTest(chosen_test);
+                    this.persistChosenTest(chosen_test);
                 }
                 return chosen_test;
             },
-            persistentChosenTest: function(chosen_test) {
+            persistChosenTest: function(chosen_test) {
                 if (typeof chosen_test !== "undefined") {
                     setCookie(scenarioOpts.name, chosen_test, COOKIE_PERSISTENT_DAYS);
                 }
