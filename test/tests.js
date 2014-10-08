@@ -11,7 +11,7 @@ describe("Scenario.js", function() {
             var i = 1000;
             while (i--) {
                 new Scenario({
-                    name: 'Weight Test',
+                    name: 'Weight_Test',
                     track: function(name, opts, cb) {
                         res[opts.Tests]++;
                     }
@@ -23,7 +23,7 @@ describe("Scenario.js", function() {
                         name: 'B'
                     })
                     .go();
-                delete_cookie("Weight Test");
+                delete_cookie("Weight_Test");
             }
             var diff_ratio = res.A / res.B;
             (diff_ratio > 0.9 && diff_ratio < 1.1).should.equal(true);

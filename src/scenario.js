@@ -33,6 +33,7 @@
         self.tests = {};
 
         function setCookie(cname, cvalue, exdays) {
+            cname = cname.replace(/\s+/g, "_");
             var d = new Date();
             d.setTime(d.getTime() + (exdays*24*60*60*1000));
             var expires = "expires="+d.toUTCString();
@@ -40,6 +41,7 @@
         }
 
         function getCookie(cname) {
+            cname = cname.replace(/\s+/g, "_");
             var name = cname + "=";
             var ca = document.cookie.split(';');
             for(var i=0; i<ca.length; i++) {
